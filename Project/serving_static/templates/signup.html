@@ -1,0 +1,38 @@
+
+<!---
+<html>
+    <head>
+        <title>Signup Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+    <head>
+        <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Signup</title>
+      <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+      <link href="static/simple-sidebar.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="container">
+          <h1>Signup Today!</h1>
+          <br>
+          <form action="" method="post">
+            <input type="text" placeholder="Username" name="username" value="{{
+              request.form.username }}">
+             <input type="password" placeholder="Password" name="password" value="{{
+              request.form.password }}">
+            <input class="btn btn-default" type="submit" value="Signup">
+          </form>
+          {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }} 
+              {{results}} {{userInputName}} {{userInputPassword}} {{tableUsername}} {{tablePassword}}
+          {% endif %}
+        </div>
+      </body>
+    
+      <script src="static/vendor/jquery/jquery.min.js"></script>
+      <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</html>
+-->

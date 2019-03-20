@@ -1,0 +1,18 @@
+
+<title>Users</title>
+    
+    
+<table>
+    {% if result %}
+    <tr>
+        <th>User Name</th>
+        <th>User Password</th>
+    </tr>
+    {% for row in result %}
+    <tr>
+        <td> {{row.user_name}}</td>
+        <td> {{row.user_password}}</td> 
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>

@@ -1,0 +1,50 @@
+<head>
+    <title>Login</title>
+</head>
+{% include 'header.html' %} 
+   
+   <body>
+    {% include 'navbar.html' %}
+
+    <!-- LOGIN START -->
+    <div class="container-fluid">
+     <div class="row">
+      <div class="col-sm-6 bg-light mx-auto">
+       <h3 class="mt-3">Login</h3>
+       <form>
+        <div class="form-group">
+         <label for="username">Username</label>
+         <input type="username" class="form-control" id="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+         <label for="passwordinput">Password</label>
+         <input placeholder="Password" name="password" type="password" class="form-control" id="passwordinput" value="{{request.form.password }}">
+        </div>
+        <button type="submit" class="btn btn-secondary">Login</button>
+        <small>Don't have an account? <a href="/register.html">Register an account</a></small>
+       </form>
+      </div>
+     </div>
+    </div>
+    <!-- LOGIN END -->
+    {% include 'footer.html' %}
+</body>
+   
+       
+       <!--
+    <div class="container">
+     <h1>Please login</h1>
+     <br>
+     <form action="" method="post">
+      <input type="text" placeholder="Username" name="username" value="
+          {{request.form.username }}">
+      <input type="password" placeholder="Password" name="password" value="
+          {{request.form.password }}">
+      <input class="btn btn-default" type="submit" value="Login">
+     </form>
+      
+      {% if error %}
+     <p class="error"><strong>Error:</strong> {{ error }} 
+      {{results}} {{userInputName}} {{userInputPassword}} {{tableUsername}} {{tablePassword}}
+      {% endif %}
+      -->

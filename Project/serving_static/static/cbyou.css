@@ -1,0 +1,23 @@
+body {
+    background-image: url("images/palm_trees.jpg");
+    background-color: gray;
+}
+
+.bg-dark-translucent{
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+
+@media (min-width: 48em) {
+    .card-columns {
+        -webkit-column-count: 3; 
+        -moz-column-count: 3;
+        column-count: 3;
+    }
+}
