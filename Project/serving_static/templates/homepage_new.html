@@ -1,0 +1,17 @@
+{% include 'header.html' %}
+   <body>
+     {% include 'navbar.html' %}
+     {% if result %}
+    <div class="container-fluid">
+     <!--<div class="card-deck">-->
+      {% for row in result %}
+      <div class="card text-light bg-dark-translucent">
+        <h3 class="card-header">{{ row.description }}</h3>
+        <p class="card-text">{{ row.hours }} {{ row.date }}</p>
+      </div>
+      {% endfor %}
+      {% endif %}
+      <!--</div>-->
+     </div>
+  {% include 'footer.html' %}
+  </body>

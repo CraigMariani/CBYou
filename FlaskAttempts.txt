@@ -1,0 +1,123 @@
+Craig:~/environment $ sudo python app.py
+python: can't open file 'app.py': [Errno 2] No such file or directory
+Craig:~/environment $ ls
+flask-aws  HomePage.html  README.md
+Craig:~/environment $ cd flask-aws
+Craig:~/environment/flask-aws $ ls
+bin  include  lib  lib64  local
+Craig:~/environment/flask-aws $ cd bin
+Craig:~/environment/flask-aws/bin $ ls
+activate  activate.csh  activate.fish  activate.ps1  activate_this.py  easy_install  easy_install-3.6  pip  pip3  pip3.6  python  python3  python3.6  python-config  wheel
+Craig:~/environment/flask-aws/bin $ pip install -r easy_install-3.6
+Invalid requirement: 'import re'
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/pip/req/req_install.py", line 82, in __init__
+    req = Requirement(req)
+  File "/usr/lib/python2.7/dist-packages/pip/_vendor/packaging/requirements.py", line 96, in __init__
+    requirement_string[e.loc:e.loc + 8]))
+InvalidRequirement: Invalid requirement, parse error at "u're'"
+
+You are using pip version 9.0.3, however version 19.0.2 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+Craig:~/environment/flask-aws/bin $ pip install --upgrade pip
+Collecting pip
+  Using cached https://files.pythonhosted.org/packages/d7/41/34dd96bd33958e52cb4da2f1bf0818e396514fd4f4725a79199564cd0c20/pip-19.0.2-py2.py3-none-any.whl
+Installing collected packages: pip
+  Found existing installation: pip 9.0.3
+    Uninstalling pip-9.0.3:
+Exception:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/pip/basecommand.py", line 215, in main
+    status = self.run(options, args)
+  File "/usr/lib/python2.7/dist-packages/pip/commands/install.py", line 342, in run
+    prefix=options.prefix_path,
+  File "/usr/lib/python2.7/dist-packages/pip/req/req_set.py", line 778, in install
+    requirement.uninstall(auto_confirm=True)
+  File "/usr/lib/python2.7/dist-packages/pip/req/req_install.py", line 754, in uninstall
+    paths_to_remove.remove(auto_confirm)
+  File "/usr/lib/python2.7/dist-packages/pip/req/req_uninstall.py", line 115, in remove
+    renames(path, new_path)
+  File "/usr/lib/python2.7/dist-packages/pip/utils/__init__.py", line 267, in renames
+    shutil.move(old, new)
+  File "/usr/lib64/python2.7/shutil.py", line 317, in move
+    os.unlink(src)
+OSError: [Errno 13] Permission denied: '/usr/bin/pip'
+You are using pip version 9.0.3, however version 19.0.2 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+Craig:~/environment/flask-aws/bin $ -- upgrade pip
+bash: --: command not found
+Craig:~/environment/flask-aws/bin $ clear
+Craig:~/environment/flask-aws/bin $ pip install --upgrade pip                                                                                                                              
+Collecting pip
+  Using cached https://files.pythonhosted.org/packages/d7/41/34dd96bd33958e52cb4da2f1bf0818e396514fd4f4725a79199564cd0c20/pip-19.0.2-py2.py3-none-any.whl
+Installing collected packages: pip
+  Found existing installation: pip 9.0.3
+    Uninstalling pip-9.0.3:
+Exception:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/pip/basecommand.py", line 215, in main
+    status = self.run(options, args)
+  File "/usr/lib/python2.7/dist-packages/pip/commands/install.py", line 342, in run
+    prefix=options.prefix_path,
+  File "/usr/lib/python2.7/dist-packages/pip/req/req_set.py", line 778, in install
+    requirement.uninstall(auto_confirm=True)
+  File "/usr/lib/python2.7/dist-packages/pip/req/req_install.py", line 754, in uninstall
+    paths_to_remove.remove(auto_confirm)
+  File "/usr/lib/python2.7/dist-packages/pip/req/req_uninstall.py", line 115, in remove
+    renames(path, new_path)
+  File "/usr/lib/python2.7/dist-packages/pip/utils/__init__.py", line 267, in renames
+    shutil.move(old, new)
+  File "/usr/lib64/python2.7/shutil.py", line 317, in move
+    os.unlink(src)
+OSError: [Errno 13] Permission denied: '/usr/bin/pip'
+You are using pip version 9.0.3, however version 19.0.2 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+Craig:~/environment/flask-aws/bin $ ls
+activate  activate.csh  activate.fish  activate.ps1  activate_this.py  easy_install  easy_install-3.6  pip  pip3  pip3.6  python  python3  python3.6  python-config  wheel
+Craig:~/environment/flask-aws/bin $ cd pip
+bash: cd: pip: Not a directory
+Craig:~/environment/flask-aws/bin $ python3 pip
+Traceback (most recent call last):
+  File "pip", line 7, in <module>
+    from pip._internal import main
+ModuleNotFoundError: No module named 'pip._internal'
+Craig:~/environment/flask-aws/bin $ python3 pip                                                                                                                                            
+  File "pip", line 7
+    from pip._internal
+                     ^
+SyntaxError: invalid syntax
+Craig:~/environment/flask-aws/bin $ python3 pip
+Traceback (most recent call last):
+  File "pip", line 8, in <module>
+    import main
+ModuleNotFoundError: No module named 'main'
+Craig:~/environment/flask-aws/bin $ pythom3 easy_install
+bash: pythom3: command not found
+Craig:~/environment/flask-aws/bin $ python3 easy_install                                                                                                                                   
+error: can't create or remove files in install directory
+
+The following error occurred while trying to add or remove files in the
+installation directory:
+
+    [Errno 13] Permission denied: '/usr/lib/python3.6/dist-packages/test-easy-install-5679.write-test'
+
+The installation directory you specified (via --install-dir, --prefix, or
+the distutils default setting) was:
+
+    /usr/lib/python3.6/dist-packages/
+
+Perhaps your account does not have write access to this directory?  If the
+installation directory is a system-owned directory, you may need to sign in
+as the administrator or "root" account.  If you do not have administrative
+access to this machine, you may wish to choose a different installation
+directory, preferably one that is listed in your PYTHONPATH environment
+variable.
+
+For information on other options, you may wish to consult the
+documentation at:
+
+  https://setuptools.readthedocs.io/en/latest/easy_install.html
+
+Please make the appropriate changes for your system and try again.
+
+Craig:~/environment/flask-aws/bin $ 

@@ -1,5 +1,5 @@
 
-<!---
+
 <html>
     <head>
         <title>Signup Page</title>
@@ -17,7 +17,6 @@
     <body>
         <div class="container">
           <h1>Signup Today!</h1>
-          <br>
           <form action="" method="post">
             <input type="text" placeholder="Username" name="username" value="{{
               request.form.username }}">
@@ -27,7 +26,7 @@
           </form>
           {% if error %}
             <p class="error"><strong>Error:</strong> {{ error }} 
-              {{results}} {{userInputName}} {{userInputPassword}} {{tableUsername}} {{tablePassword}}
+             {{userInputName}} {{userInputPassword}} {{signupUser}} {{signupPassword}}
           {% endif %}
         </div>
       </body>
@@ -35,4 +34,3 @@
       <script src="static/vendor/jquery/jquery.min.js"></script>
       <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </html>
--->

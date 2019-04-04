@@ -1,0 +1,1 @@
+Key Pair for aws ubuntu is : Key

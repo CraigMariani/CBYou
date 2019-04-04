@@ -12,7 +12,7 @@ body {
     height: 15vw;
     object-fit: cover;
 }
-
+.button1{align-content:right;}
 
 @media (min-width: 48em) {
     .card-columns {
@@ -20,4 +20,16 @@ body {
         -moz-column-count: 3;
         column-count: 3;
     }
+    
 }
+
+input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+  
+  /* When the input field gets focus, change its width to 100% */
+  input[type=text]:focus {
+    width: 100%;
+  }

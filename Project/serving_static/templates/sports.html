@@ -9,11 +9,37 @@
 
 <body>
 {% include 'navbar.html'%}
-<h2> Sports Page Test <h2>
+<h2> Study <h2>
  
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script> 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<h3>Upcoming Games</h3>
+<div class="card text-light bg-dark-translucent">
+<table >
+    {%if result%}
+    <tr>
+        <th >Game</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Matchup</th>
+        <th>Location</th>
+        <th>Game</th>
+    </tr>
+    {%for row in result%}
+    <tr>
+        <td>{{row.title}}</td>
+        <td>{{row.date}}</td>
+        <td>{{row.time}}</td>
+        <td>{{row.matchup}}</td>
+        <td>{{row.location}}</td>
+        <td>{{row.game}}</td>
+    </tr>
+    {%endfor%}
+    {%endif%}
+</table>
+</div>
 {% include 'footer.html'%}
 </body>
 </html>
