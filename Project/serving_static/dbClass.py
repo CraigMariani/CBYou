@@ -59,8 +59,9 @@ class Database():
         result = self.cur.fetchall()
         return result
 
-    def trackUser(self, user):
-        self.cur.execute("SELECT user_id FROM users WHERE user_name =%s")
+    def getUserID(self, user):
+        stmt = "SELECT user_id FROM users WHERE user_name = %s"
+        self.cur.execute(stmt, user)#eror in SQL syntax look here!
         result = self.cur.fetchone()
         return result
 

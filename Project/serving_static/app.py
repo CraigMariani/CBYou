@@ -1,15 +1,19 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session, logging, abort, g
 from flask_apscheduler import APScheduler
 from apscheduler.triggers.cron import CronTrigger
+from passlib.hash import sha256_crypt
+
 import pymysql
 import dbClass
-import hashlib, uuid
+import hashlib, uuid    
 
 app = Flask(__name__)
 scheduler = APScheduler()
 scheduler.init_app(app)
 scheduler.start()
 app.secret_key = 'super secret key'
+
+hashedPasssword = None
 
 @app.route('/showusers')
 def showusers():
@@ -42,6 +46,7 @@ def schedule():
 @app.route('/test.html')
 def _test():
     return render_template('homepage_new.html')
+
 @app.route('/study.html')
 def _study():
     return render_template('study.html')
@@ -62,6 +67,8 @@ def signup():
     signupUser = None
     signupPassword = None
 
+    
+
     db = dbClass.Database()
     
     if request.method == 'POST':
@@ -80,8 +87,14 @@ def signup():
         # if signupUser == userInputName and signupPassword == userInputPassword:
 
         
+        #instead of this hash the password first!
 
-        db.importUser(userInputName, userInputPassword)
+        #hashedPassword = hashlib.md5(userInputPassword.encode())
+
+        hashedpassword = sha256_crypt.encrypt(userInputPassword)
+
+        #db.importUser(userInputName, hashedPassword.hexdigest())
+        db.importUser(userInputName, hashedPassword)
         error = "Sign up successful"
 
         # else:
@@ -109,7 +122,7 @@ def login():
         #If the user input password and username are the same as the one in the database
         if userCheck == userInputName and pwdCheck == userInputPassword: 
             session['logged_in'] = True
-            currentUser = db.trackUser(userCheck)
+            currentUser = db.getUserID(userCheck)
             return redirect(url_for('home'))#redirect to home
         else:
             error = 'Invalid Credentials. Please try again'
