@@ -59,6 +59,10 @@ class Database():
         result = self.cur.fetchall()
         return result
 
+    def trackUser():
+        self.cur.execute("SELECT user")
+
+
     def checkUser(self, user):  
         stmt = "SELECT user_name FROM users where user_name = %s" 
         self.cur.execute(stmt, user) #executes statment with cursor

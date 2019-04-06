@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, flash, session, logging, abort
+from flask import Flask, render_template, redirect, url_for, request, flash, session, logging, abort, g
 from flask_apscheduler import APScheduler
 from apscheduler.triggers.cron import CronTrigger
 import pymysql
@@ -109,6 +109,7 @@ def login():
         #If the user input password and username are the same as the one in the database
         if userCheck == userInputName and pwdCheck == userInputPassword: 
             session['logged_in'] = True
+            db.trackUser()
             return redirect(url_for('home'))#redirect to home
         else:
             error = 'Invalid Credentials. Please try again'
