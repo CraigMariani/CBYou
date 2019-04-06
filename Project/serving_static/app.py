@@ -109,7 +109,7 @@ def login():
         #If the user input password and username are the same as the one in the database
         if userCheck == userInputName and pwdCheck == userInputPassword: 
             session['logged_in'] = True
-            db.trackUser()
+            currentUser = db.trackUser(userCheck)
             return redirect(url_for('home'))#redirect to home
         else:
             error = 'Invalid Credentials. Please try again'
