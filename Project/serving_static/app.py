@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, flash, session, logging
+from flask import Flask, render_template, redirect, url_for, request, flash, session, logging, abort
 from flask_apscheduler import APScheduler
 from apscheduler.triggers.cron import CronTrigger
 import pymysql
@@ -9,6 +9,7 @@ app = Flask(__name__)
 scheduler = APScheduler()
 scheduler.init_app(app)
 scheduler.start()
+app.secret_key = 'super secret key'
 
 @app.route('/showusers')
 def showusers():
@@ -107,6 +108,7 @@ def login():
 
         #If the user input password and username are the same as the one in the database
         if userCheck == userInputName and pwdCheck == userInputPassword: 
+            session['logged_in'] = True
             return redirect(url_for('home'))#redirect to home
         else:
             error = 'Invalid Credentials. Please try again'
@@ -133,6 +135,12 @@ def delete():
     return render_template('secret.html')
 
 if __name__ == "__main__":
+    # app.secret_key = 'super secret key'
+    app.config['SESSION_TYPE'] = 'filesystem'
+
+    sess.init_app(app)
+
+
     app.run()
 
 
