@@ -13,7 +13,11 @@ scheduler.init_app(app)
 scheduler.start()
 app.secret_key = 'super secret key'
 
-hashedPasssword = None
+verified = None
+
+# global hashedPassword = sha256_crypt.encrypt(userInputPassword)
+# global verified = sha256_crypt.verify(userInputPassword,hashedPassword)
+
 
 @app.route('/showusers')
 def showusers():
@@ -59,6 +63,15 @@ def _study():
 #     return render_template('registerTest.html')
 
 # @app.route('/signup.html', methods=['GET','POST']) 
+
+# def verifyTrue(verification):
+#     verified = verification
+#     return verified
+
+# @app.context_processor()
+# def context_processor():
+#     return dict(key='value', verifyTrue=verifyTrue)
+
 @app.route('/signup.html', methods=['GET','POST']) 
 def signup():
     error = None
@@ -67,7 +80,7 @@ def signup():
     signupUser = None
     signupPassword = None
 
-    
+
 
     db = dbClass.Database()
     
@@ -90,9 +103,11 @@ def signup():
         #instead of this hash the password first!
 
         #hashedPassword = hashlib.md5(userInputPassword.encode())
+        global verified
+        hashedPassword = sha256_crypt.encrypt(userInputPassword)
+        verified = sha256_crypt.verify(userInputPassword,hashedPassword)
 
-        hashedpassword = sha256_crypt.encrypt(userInputPassword)
-
+        # verifyTrue(verified)
         #db.importUser(userInputName, hashedPassword.hexdigest())
         db.importUser(userInputName, hashedPassword)
         error = "Sign up successful"
@@ -108,6 +123,7 @@ def login():
     error = None
     db = dbClass.Database()
 
+
     if request.method == 'POST': #if the user asks to submit his login to the database
        
     #access HTML input in login.HTML, stores username and password submitted 
@@ -120,14 +136,25 @@ def login():
 
 
         #If the user input password and username are the same as the one in the database
-        if userCheck == userInputName and pwdCheck == userInputPassword: 
-            session['logged_in'] = True
-            currentUser = db.getUserID(userCheck)
-            return redirect(url_for('home'))#redirect to home
+        # if userCheck == userInputName and pwdCheck == userInputPassword: 
+
+        # hashedPassword = hashPassword(passPassword)
+
+        # verified = sha256_crypt.verify(userInputPassword,hashedPassword)
+        # verified = verifyTrue
+        if userCheck == userInputName:
+            global verified
+            if verified == True:
+                session['logged_in'] = True
+                currentUser = db.getUserID(userCheck)
+                return redirect(url_for('home'))#redirect to home
+
+            else:
+                error = 'Verification failed'
         else:
             error = 'Invalid Credentials. Please try again'
 
-    return render_template('login.html', error=error)
+    return render_template('login.html', error=error, verified=verified)
 
 @app.route('/forums.html')
 def forum():
@@ -148,13 +175,15 @@ def delete():
     dbClass.Database().delete_events()
     return render_template('secret.html')
 
+
+
 if __name__ == "__main__":
     # app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
 
     sess.init_app(app)
 
-
+    
     app.run()
 
 
