@@ -13,7 +13,8 @@ scheduler.init_app(app)
 scheduler.start()
 app.secret_key = 'super secret key'
 
-verified = None
+# verified = False
+hashedPassword = None
 
 # global hashedPassword = sha256_crypt.encrypt(userInputPassword)
 # global verified = sha256_crypt.verify(userInputPassword,hashedPassword)
@@ -103,10 +104,9 @@ def signup():
         #instead of this hash the password first!
 
         #hashedPassword = hashlib.md5(userInputPassword.encode())
-        global verified
+        global hashedPassword
         hashedPassword = sha256_crypt.encrypt(userInputPassword)
-        verified = sha256_crypt.verify(userInputPassword,hashedPassword)
-
+        # verified = sha256_crypt.verify(userInputPassword,hashedPassword)
         # verifyTrue(verified)
         #db.importUser(userInputName, hashedPassword.hexdigest())
         db.importUser(userInputName, hashedPassword)
@@ -122,6 +122,7 @@ def signup():
 def login():
     error = None
     db = dbClass.Database()
+    verified = False
 
 
     if request.method == 'POST': #if the user asks to submit his login to the database
@@ -143,8 +144,10 @@ def login():
         # verified = sha256_crypt.verify(userInputPassword,hashedPassword)
         # verified = verifyTrue
         if userCheck == userInputName:
-            global verified
-            if verified == True:
+            
+            global hashedPassword
+            verified = sha256_crypt.verify(userInputPassword,hashedPassword)
+            if verified == True or userInputPassword == pwdCheck:
                 session['logged_in'] = True
                 currentUser = db.getUserID(userCheck)
                 return redirect(url_for('home'))#redirect to home
