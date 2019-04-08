@@ -146,6 +146,8 @@ def login():
         if userCheck == userInputName:
             
             global hashedPassword
+            #get the hashed password from the database!
+
             verified = sha256_crypt.verify(userInputPassword,hashedPassword)
             if verified == True or userInputPassword == pwdCheck:
                 session['logged_in'] = True
