@@ -16,7 +16,7 @@ class Database():
         result = self.cur.fetchall()
         return result
 
-    def showSschedule(self):
+    def showSchedule(self):
         self.cur.execute("SELECT * FROM schedule")
         result = self.cur.fetchall()
         return result

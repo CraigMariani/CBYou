@@ -12,7 +12,10 @@ body {
     height: 15vw;
     object-fit: cover;
 }
-.button1{align-content:right;}
+.button1{
+    
+    
+}
 
 @media (min-width: 48em) {
     .card-columns {

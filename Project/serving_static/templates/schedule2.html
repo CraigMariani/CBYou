@@ -1,0 +1,100 @@
+{% include 'header.html'}
+<body>
+	{% include 'navbar.html'}
+
+	{% if userLoggedIn %}
+	<div class="table-responsive">
+	{% for day in days %}
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">{{day}}</th>
+					<th scope="col">Time</th>
+					<th scope="col">Event</th>
+				</tr>
+			</thead>
+			{% for event in day.events %}
+			<tbody>
+				<tr>
+					<td></td>
+					<td>{{event.time}}</td>
+					<td>{{event.name}}</td>
+				</tr>
+			</tbody>
+			{% endfor %}
+		</table>
+	</div>
+	{% endfor %}
+
+	<div class="container">
+		<h2>Dynamic Tabs</h2>
+  		<ul class="nav nav-tabs">
+    		<li class="active"><a data-toggle="tab" href="#add">Add Item</a></li>
+	    	<li><a data-toggle="tab" href="#edit">Edit Item</a></li>
+  	  	<li><a data-toggle="tab" href="#remove">Remove Item</a></li>
+  		</ul>
+		<div class="tab-content">
+    	<div id="home" class="tab-pane fade in active">
+    		<!-- ADD START -->
+      	<h3>Add Recurring Event</h3>
+      		<form class="border border-light p-5" action="schedule.html">
+    			<p class="h4 mb-4 text-center">Delete Form</p>
+    			<label for="eventName">Description/Name</label>
+   				<input id="eventName" class="form-control mb-4" placeholder="Text input" type="text">
+    			<div class="custom-control custom-checkbox mb-4">
+        		<input class="custom-control-input" id="addMonday" type="checkbox">
+        		<label class="custom-control-label" for="addMonday">Monday</label>
+    			</div>
+    			<div class="custom-control custom-checkbox mb-4">
+        		<input class="custom-control-input" id="addTuesday" type="checkbox">
+        		<label class="custom-control-label" for="addTuesday">Tuesday</label>
+    			</div>
+    			<div class="custom-control custom-checkbox mb-4">
+        		<input class="custom-control-input" id="addWednesday" type="checkbox">
+        		<label class="custom-control-label" for="addWednesday">Wednesday</label>
+    			</div>
+    			<div class="custom-control custom-checkbox mb-4">
+        		<input class="custom-control-input" id="addThursday" type="checkbox">
+        		<label class="custom-control-label" for="addThursday">Thursday</label>
+    			</div>
+    			<div class="custom-control custom-checkbox mb-4">
+        		<input class="custom-control-input" id="addFriday" type="checkbox">
+        		<label class="custom-control-label" for="addFriday">Friday</label>
+    			</div>
+    			<div class="custom-control custom-checkbox mb-4">
+        		<input class="custom-control-input" id="addSaturday" type="checkbox">
+        		<label class="custom-control-label" for="addSaturday">Saturday</label>
+    			</div>
+    			<div class="custom-control custom-checkbox mb-4">
+        		<input class="custom-control-input" id="addSunday" type="checkbox">
+        		<label class="custom-control-label" for="addSunday">Sunday</label>
+    			</div>
+
+    			<button class="btn btn-dark btn-block" type="submit">Add</button>
+				</form>
+    	</div>
+    	<!-- REMOVE START -->
+    	<div id="remove" class="tab-pane fade">
+      	<form class="border border-light p-5">
+					<p class="h4 mb-4">Delete an event</p>
+					<label for="deleteSelect">Default select</label>
+    			<select class="browser-default custom-select mb-4" id="deleteSelect">
+        		<option value="" disabled="" selected="">Pick an event</option>
+        		{% for event in events %}
+        		<option value="{{event.id}}">{{event.name}}</option>
+        		{% endfor %}
+    			</select>
+    			<button class="btn btn-dark btn-block" type="submit">Delete</button>
+				</form>
+    	</div>
+    	<!-- REMOVE END -->
+		</div>
+	</div>
+
+	{% else %}
+	<div class="alert alert-warning" role="alert">
+  		You must be logged in to access schedule.
+	</div>
+	{% endif %}
+	{%include 'footer.html'}
+</body>

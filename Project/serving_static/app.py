@@ -39,13 +39,14 @@ def home():
     return render_template('homepage_new.html', result=result, content_type='application/json')#First page the user sees
     #It will display news and other important updates
 
-@app.route('/schedule.html')
+@app.route('/schedule.html', methods=['GET','POST'])
 def schedule():
     def db_query():
         db = dbClass.Database()
         schedule = db.showSchedule()
         return schedule
     result = db_query()
+
     return render_template('schedule.html', result=result, content_type='application/json')
 
 @app.route('/test.html')
@@ -55,23 +56,6 @@ def _test():
 @app.route('/study.html')
 def _study():
     return render_template('study.html')
-# @app.route('/loginTest.html')
-# def _loginTest():
-#     return render_template('loginTest.html')
-
-# @app.route('/registerTest.html')
-# def _registerTest():
-#     return render_template('registerTest.html')
-
-# @app.route('/signup.html', methods=['GET','POST']) 
-
-# def verifyTrue(verification):
-#     verified = verification
-#     return verified
-
-# @app.context_processor()
-# def context_processor():
-#     return dict(key='value', verifyTrue=verifyTrue)
 
 @app.route('/signup.html', methods=['GET','POST']) 
 def signup():
@@ -193,3 +177,21 @@ if __name__ == "__main__":
 
 
 #app.apscheduler.add_job(update_events, 'cron', hour=0, minute=5)
+
+# @app.route('/loginTest.html')
+# def _loginTest():
+#     return render_template('loginTest.html')
+
+# @app.route('/registerTest.html')
+# def _registerTest():
+#     return render_template('registerTest.html')
+
+# @app.route('/signup.html', methods=['GET','POST']) 
+
+# def verifyTrue(verification):
+#     verified = verification
+#     return verified
+
+# @app.context_processor()
+# def context_processor():
+#     return dict(key='value', verifyTrue=verifyTrue)
